@@ -16,8 +16,10 @@
     "noImplicitAny": false,
     "strictNullChecks": false,
     "strictFunctionTypes": false,
-    "strictBindCallApply": false
+    "strictBindCallApply": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
   },
-  "include": ["src/**/*"],
+  "include": ["*.ts", "**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }

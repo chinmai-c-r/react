@@ -1,8 +1,7 @@
 {
-  "extends": "../../packages/config/tsconfig.base.json",
   "compilerOptions": {
     "module": "commonjs",
-    "moduleResolution": "node",
+    "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -13,12 +12,12 @@
     "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
-    "strictNullChecks": false,
-    "strictFunctionTypes": false,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
     "noImplicitAny": false,
     "strictBindCallApply": false,
-    "forceConsistentCasingInFileNames": false,
-    "resolveJsonModule": true,
-    "declaration": true
-  }
+    "noFallthroughCasesInSwitch": false
+  },
+  "include": ["*.ts", "**/*.ts"],
+  "exclude": ["node_modules", "dist"]
 }
