@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import {
   Controller,
   Get,
@@ -6,10 +5,10 @@ import {
   Delete,
   Param,
   NotFoundException,
-} from '@nestjs/common';
-import { CartService } from './cart.service';
+} from "@nestjs/common";
+import { CartService } from "./cart.service";
 
-@Controller('cart')
+@Controller("cart")
 export class CartController {
   constructor(private readonly cartService: CartService) {}
 
@@ -20,8 +19,8 @@ export class CartController {
     };
   }
 
-  @Post(':ticket_id')
-  addToCart(@Param('ticket_id') ticket_id: string) {
+  @Post(":ticket_id")
+  addToCart(@Param("ticket_id") ticket_id: string) {
     try {
       this.cartService.addToCart(Number(ticket_id));
     } catch (error) {
@@ -29,11 +28,11 @@ export class CartController {
     }
   }
 
-  @Delete(':cart_item_id')
-  removeFromCart(@Param('cart_item_id') cart_item_id: string) {
+  @Delete(":cart_item_id")
+  removeFromCart(@Param("cart_item_id") cart_item_id: string) {
     try {
       this.cartService.removeFromCart(Number(cart_item_id));
-    } catch (error: any) {
+    } catch (error) {
       throw new NotFoundException(error.message);
     }
   }
