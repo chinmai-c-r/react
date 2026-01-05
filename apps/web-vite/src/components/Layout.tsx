@@ -18,6 +18,9 @@ export const Layout = () => {
           <Link to="/contact" className="nav-link">
             Contact
           </Link>
+          <Link to="/users" className="nav-link">
+            Users
+          </Link>
         </nav>
         <div className="sidebar-footer">
           <p>© 2025 My App</p>

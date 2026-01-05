@@ -1,0 +1,239 @@
+/* ===== CSS GRID BASICS ===== */
+
+/* Example 1: Basic Grid Setup */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+  grid-template-rows: repeat(3, 100px); /* 3 rows of 100px each */
+  gap: 10px; /* Space between items */
+  padding: 20px;
+  background: #f0f0f0;
+  margin-bottom: 40px;
+}
+
+.grid-item {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* ===== GRID EXAMPLES ===== */
+
+/* Example 2: Grid with different column widths */
+.grid-responsive {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr; /* First column is 2x wider */
+  gap: 15px;
+  padding: 20px;
+  background: #f9f9f9;
+  margin-bottom: 40px;
+}
+
+.grid-responsive .grid-item {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+/* Example 3: Auto-fit responsive grid */
+.grid-auto-fit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  padding: 20px;
+  background: #f0f0f0;
+  margin-bottom: 40px;
+}
+
+.grid-auto-fit .grid-item {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+/* Example 4: Grid with spanning items */
+.grid-span {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 100px 100px 100px;
+  gap: 10px;
+  padding: 20px;
+  background: #f0f0f0;
+  margin-bottom: 40px;
+}
+
+.grid-span .grid-item {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+/* Spanning multiple columns/rows */
+.grid-span .grid-item:nth-child(1) {
+  grid-column: span 2; /* Takes 2 columns */
+}
+
+.grid-span .grid-item:nth-child(5) {
+  grid-row: span 2; /* Takes 2 rows */
+}
+
+
+.grid-span .grid-item:nth-child(10) {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* Example 5: Named grid areas (layout) */
+.grid-areas {
+  display: grid;
+  grid-template-columns: 200px 1fr 200px;
+  grid-template-rows: 60px 1fr 60px;
+  gap: 10px;
+  height: 400px;
+  padding: 20px;
+  background: #f0f0f0;
+  grid-template-areas:
+    "header header header"
+    "sidebar main sidebar"
+    "footer footer footer";
+}
+
+.header {
+  grid-area: header;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+
+.sidebar {
+  background: linear-gradient(180deg, #f093fb 0%, #f5576c 100%);
+}
+
+.main {
+  grid-area: main;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.footer {
+  grid-area: footer;
+  background: linear-gradient(90deg, #fa709a 0%, #fee140 100%);
+}
+
+/* Child combinator (>) - targets DIRECT children only */
+.grid-areas > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+/* ===== CSS SELECTORS & COMBINATORS ===== */
+
+/* Descendant combinator (space) - targets all descendants */
+.grid-areas div {
+  /* Would select all divs inside .grid-areas, even nested ones */
+}
+
+/* Adjacent sibling combinator (+) - targets next sibling */
+.grid-item + .grid-item {
+  /* Selects grid-item that comes right after another grid-item */
+  margin-left: 5px;
+}
+
+/* General sibling combinator (~) - targets all following siblings */
+.grid-item:nth-child(1) ~ .grid-item {
+  /* Selects all grid-items that come after the first one */
+}
+
+/* Attribute selector */
+.grid[class*="grid"] {
+  /* Selects elements with class containing "grid" */
+}
+
+/* Pseudo-classes (state-based) */
+.grid-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: 0.3s ease;
+}
+
+.grid-item:nth-child(odd) {
+  /* Targets odd-numbered children */
+  opacity: 0.9;
+}
+
+.grid-item:nth-child(even) {
+  /* Targets even-numbered children */
+  opacity: 0.8;
+}
+
+.grid-item:first-child {
+  /* First child */
+}
+
+.grid-item:last-child {
+  /* Last child */
+}
+
+/* Pseudo-elements (content-based) */
+.grid-item::before {
+  /* Adds content before element */
+}
+
+.grid-item::after {
+  /* Adds content after element */
+}
+
+/* Example 6: Implicit vs Explicit grid */
+.grid-implicit {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 80px; /* Height for implicit rows */
+  gap: 10px;
+  padding: 20px;
+  background: #f0f0f0;
+}
+
+.grid-implicit .grid-item {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+/* ===== KEY CONCEPTS ===== 
+ *
+ * 1. GRID CONTAINER vs GRID ITEMS
+ *    - Container: Has display: grid
+ *    - Items: Direct children of container
+ *
+ * 2. COLUMNS & ROWS
+ *    - grid-template-columns: Define column sizes
+ *    - grid-template-rows: Define row sizes
+ *
+ * 3. UNITS
+ *    - px: Fixed pixel size
+ *    - fr: Fractional unit (flexible)
+ *    - %: Percentage
+ *    - auto: Fill remaining space
+ *    - repeat(n, size): Repeat n times
+ *
+ * 4. GAP
+ *    - gap: Space between all items
+ *    - column-gap: Space between columns
+ *    - row-gap: Space between rows
+ *
+ * 5. SPANNING
+ *    - grid-column: span 2 (spans 2 columns)
+ *    - grid-row: span 2 (spans 2 rows)
+ *
+ * 6. ALIGNMENT
+ *    - justify-items: Horizontal alignment
+ *    - align-items: Vertical alignment
+ *    - place-items: Shorthand for both
+ *
+ * 7. GRID AREAS
+ *    - Define named regions for layout
+ *    - grid-template-areas: Map the layout
+ *    - grid-area: Assign item to area
+ *
+ * 8. AUTO-FIT vs AUTO-FILL
+ *    - auto-fit: Collapses empty tracks
+ *    - auto-fill: Keeps empty tracks
+ */
